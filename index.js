@@ -5,7 +5,7 @@ app.set('port', (process.env.PORT || 8080))
 app.use(express.static(__dirname + '/public'))
 
 app.get('/', function(request, response) {
-  response.sendFile(path.join(__dirname, 'public', 'index.html'));
+  response.sendFile(path.join(__dirname, 'public/home', 'index.html'))
 })
 
 app.listen(app.get('port'), function() {
