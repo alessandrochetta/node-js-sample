@@ -2,7 +2,9 @@ var express = require('express')
 var app = express()
 var path = require("path")
 
-app.set('port', (process.env.PORT || 8080))
+app.set('port8080', (process.env.PORT || 8080))
+app.set('port8090', (process.env.PORT || 8090))
+
 app.use(express.static(__dirname + '/public'))
 
 app.get('/public/*', function (req, res) {
@@ -10,11 +12,27 @@ app.get('/public/*', function (req, res) {
 })
 
 app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, 'public/home/', 'index.html'))
+
+  var port = req.headers.host.split(":")[1];
+
+    switch(port) {
+      case "8080":
+          res.sendFile(path.join(__dirname, 'public/home/', 'index.html'))
+          break;
+      case "8090":
+          res.sendFile(path.join(__dirname, 'public/domainSell/', 'index.html'))
+          break;
+      default:
+          res.sendFile(path.join(__dirname, 'public/home/', 'index.html'))
+    }
+
 })
 
 
+app.listen(app.get('port8080'), function() {
+  console.log("Node app is running at localhost:" + app.get('port8080'))
+})
 
-app.listen(app.get('port'), function() {
-  console.log("Node app is running at localhost:" + app.get('port'))
+app.listen(app.get('port8090'), function() {
+  console.log("Node app is running at localhost:" + app.get('port8090'))
 })
