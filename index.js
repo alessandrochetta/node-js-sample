@@ -14,7 +14,7 @@ app.get('/public/*', function (req, res) {
 app.get('/', function(req, res) {
 
   var port = req.headers.host.split(":")[1];
-
+  console.log("receiving request from port: " + port);
     switch(port) {
       case "8080":
           res.sendFile(path.join(__dirname, 'public/home/', 'index.html'))
