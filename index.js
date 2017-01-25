@@ -16,10 +16,10 @@ app.get('/', function(req, res) {
   var port = req.headers.host.split(":")[1];
   console.log("receiving request from port: " + port);
     switch(port) {
-      case "8080":
+      case "80":
           res.sendFile(path.join(__dirname, 'public/home/', 'index.html'))
           break;
-      case "8090":
+      case "90":
           res.sendFile(path.join(__dirname, 'public/domainSell/', 'index.html'))
           break;
       default:
